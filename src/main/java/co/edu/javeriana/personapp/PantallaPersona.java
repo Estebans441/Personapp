@@ -297,7 +297,7 @@ public class PantallaPersona extends javax.swing.JFrame {
     }//GEN-LAST:event_radioOActionPerformed
 
     private void botInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botInsertarActionPerformed
-        PersonaDTO p1 = new PersonaDTO((long) 1234, "Esteban", "Salazar", (short) 19, 'M');
+        PersonaDTO p1 = new PersonaDTO((long) Integer.parseInt(cajaCc.getText()), cajaNombre.getText(), cajaApellido.getText(), (short) Integer.parseInt(cajaEdad.getText()), 'M');
         System.out.println("p1: " + p1);
         PersonaDAO pdao = new PersonaDAOImpl();
         PersonaDTO p2 = pdao.create(p1);
@@ -305,7 +305,6 @@ public class PantallaPersona extends javax.swing.JFrame {
         
         jDialog1.setVisible(true);
         jDialog1.setTitle("Insertar");
-        jDialog1.setContentPane(cajaNombre);
         jDialog1.setSize(500,200);
     }//GEN-LAST:event_botInsertarActionPerformed
 
