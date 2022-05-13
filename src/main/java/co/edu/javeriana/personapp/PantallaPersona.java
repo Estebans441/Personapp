@@ -305,6 +305,7 @@ public class PantallaPersona extends javax.swing.JFrame {
         
         jDialog1.setVisible(true);
         jDialog1.setTitle("Insertar");
+        //jDialog1.setContentPane(cajaNombre);
         jDialog1.setSize(500,200);
     }//GEN-LAST:event_botInsertarActionPerformed
 
