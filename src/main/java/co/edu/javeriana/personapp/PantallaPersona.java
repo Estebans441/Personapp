@@ -4,6 +4,7 @@ import co.edu.javeriana.personapp.model.dao.PersonaDAO;
 import co.edu.javeriana.personapp.model.dao.impl.PersonaDAOImpl;
 import co.edu.javeriana.personapp.model.dto.PersonaDTO;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class PantallaPersona extends javax.swing.JFrame {
 
@@ -328,16 +329,9 @@ public class PantallaPersona extends javax.swing.JFrame {
         PersonaDAO pdao = new PersonaDAOImpl();
         PersonaDTO p2 = pdao.create(p1);
         
-        //Ventana emergente
-        jDialog1.setVisible(true);
-        jDialog1.setTitle("Insertar");
-        jDialog1.setContentPane(txtEmergente);
-        jDialog1.setSize(500,200);
-        jDialog1.setLocationRelativeTo(null);
-        
-        if(p2 != null) txtEmergente.setText("Persona agregada con exito!");
-        else txtEmergente.setText("No se pudo agregar a la persona. Verifique que no dejo ningun campo en blanco");
-        
+        //Ventana emergente        
+        if(p2 != null) JOptionPane.showMessageDialog(null, "Persona agregada con exito!");
+        else JOptionPane.showMessageDialog(null, "No se pudo agregar a la persona. Verifique que no dejo ningun campo en blanco");       
     }//GEN-LAST:event_botInsertarActionPerformed
 
     private void botBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botBuscarActionPerformed
@@ -356,8 +350,8 @@ public class PantallaPersona extends javax.swing.JFrame {
     private void botContActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botContActionPerformed
         PersonaDAO pdao = new PersonaDAOImpl();
         Integer cant = pdao.count();
-        
         txtContar.setText("Cantidad de personas: " + cant);
+        JOptionPane.showMessageDialog(null, "Cantidad de personas: " + cant);
     }//GEN-LAST:event_botContActionPerformed
 
     private void botModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botModActionPerformed
@@ -370,14 +364,9 @@ public class PantallaPersona extends javax.swing.JFrame {
         Boolean eliminado = pdao.delete((long) Integer.parseInt(cajaCc.getText()));
         
         //Ventana emergente
-        jDialog1.setVisible(true);
-        jDialog1.setTitle("Eliminar");
-        jDialog1.setContentPane(txtEmergente);
-        jDialog1.setLocationRelativeTo(null);
-        jDialog1.setSize(500,200); 
+        if(eliminado) JOptionPane.showMessageDialog(null, "Persona Eliminada con exito!");
+        else JOptionPane.showMessageDialog(null, "No se pudo eliminar a la persona. Verifique que la cedula esta bien ingresada o que la persona existe en el sistema"); 
         
-        if(eliminado) txtEmergente.setText("Persona Eliminada con exito!");
-        else txtEmergente.setText("No se pudo eliminar a la persona. Verifique que la cedula esta bien ingresada o que la persona existe en el sistema");
     }//GEN-LAST:event_botElimActionPerformed
 
     private void botIrTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botIrTelActionPerformed
