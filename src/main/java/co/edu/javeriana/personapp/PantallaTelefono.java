@@ -4,9 +4,9 @@ import co.edu.javeriana.personapp.model.dao.PersonaDAO;
 import co.edu.javeriana.personapp.model.dao.impl.PersonaDAOImpl;
 import co.edu.javeriana.personapp.model.dto.PersonaDTO;
 
-public class PantallaPersona extends javax.swing.JFrame {
+public class PantallaTelefono extends javax.swing.JFrame {
 
-    public PantallaPersona() {
+    public PantallaTelefono() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -39,7 +39,7 @@ public class PantallaPersona extends javax.swing.JFrame {
         botMod = new javax.swing.JButton();
         botElim = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
-        botIrTel = new javax.swing.JButton();
+        botIrPer = new javax.swing.JButton();
         botSalir2 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
@@ -142,13 +142,13 @@ public class PantallaPersona extends javax.swing.JFrame {
             }
         });
 
-        botIrTel.setBackground(new java.awt.Color(204, 255, 255));
-        botIrTel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        botIrTel.setText("Ir a Telefono");
-        botIrTel.setToolTipText("");
-        botIrTel.addActionListener(new java.awt.event.ActionListener() {
+        botIrPer.setBackground(new java.awt.Color(204, 255, 255));
+        botIrPer.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        botIrPer.setText("Ir a Personas");
+        botIrPer.setToolTipText("");
+        botIrPer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botIrTelActionPerformed(evt);
+                botIrPerActionPerformed(evt);
             }
         });
 
@@ -223,7 +223,7 @@ public class PantallaPersona extends javax.swing.JFrame {
                         .addGap(61, 61, 61))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botIrTel, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botIrPer, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(botSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(24, 24, 24))))
             .addGroup(layout.createSequentialGroup()
@@ -275,7 +275,7 @@ public class PantallaPersona extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(botIrTel)
+                .addComponent(botIrPer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botSalir2)
                 .addContainerGap())
@@ -297,16 +297,7 @@ public class PantallaPersona extends javax.swing.JFrame {
     }//GEN-LAST:event_radioOActionPerformed
 
     private void botInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botInsertarActionPerformed
-        PersonaDTO p1 = new PersonaDTO((long) Integer.parseInt(cajaCc.getText()), cajaNombre.getText(), cajaApellido.getText(), (short) Integer.parseInt(cajaEdad.getText()), 'M');
-        System.out.println("p1: " + p1);
-        PersonaDAO pdao = new PersonaDAOImpl();
-        PersonaDTO p2 = pdao.create(p1);
-        System.out.println("p2: " + p2);
         
-        jDialog1.setVisible(true);
-        jDialog1.setTitle("Insertar");
-        //jDialog1.setContentPane(cajaNombre);
-        jDialog1.setSize(500,200);
     }//GEN-LAST:event_botInsertarActionPerformed
 
     private void botBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botBuscarActionPerformed
@@ -329,11 +320,11 @@ public class PantallaPersona extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botElimActionPerformed
 
-    private void botIrTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botIrTelActionPerformed
-        PantallaTelefono p = new PantallaTelefono();
+    private void botIrPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botIrPerActionPerformed
+        PantallaPersona p = new PantallaPersona();
         p.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_botIrTelActionPerformed
+    }//GEN-LAST:event_botIrPerActionPerformed
 
     private void botSalir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botSalir2ActionPerformed
         this.dispose();
@@ -354,20 +345,21 @@ public class PantallaPersona extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PantallaPersona.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaTelefono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PantallaPersona.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaTelefono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PantallaPersona.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaTelefono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PantallaPersona.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaTelefono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PantallaPersona().setVisible(true);
+                new PantallaTelefono().setVisible(true);
             }
         });
     }
@@ -377,7 +369,7 @@ public class PantallaPersona extends javax.swing.JFrame {
     private javax.swing.JButton botCont;
     private javax.swing.JButton botElim;
     private javax.swing.JButton botInsertar;
-    private javax.swing.JButton botIrTel;
+    private javax.swing.JButton botIrPer;
     private javax.swing.JButton botMod;
     private javax.swing.JButton botRefres;
     private javax.swing.JButton botSalir2;
