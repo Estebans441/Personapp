@@ -6,6 +6,7 @@ import co.edu.javeriana.personapp.util.MySQL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.locks.StampedLock;
 import java.util.logging.Level;
@@ -122,12 +123,63 @@ public class PersonaDAOImpl implements PersonaDAO {
 
     @Override
     public List<PersonaDTO> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try{
+            
+            List<PersonaDTO> personas = new ArrayList<>();
+            
+            this.mysql.conectar();
+            String query = "SELECT * FROM persona;";
+            System.out.println(query);
+            Statement stmt = this.mysql.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = stmt.executeQuery(query);
+            do
+            {
+                rs.next();
+                PersonaDTO persona = new PersonaDTO(rs.getLong("cedula"), rs.getString("nombre"), rs.getString("apellido"), rs.getShort("edad"), rs.getString("genero").charAt(0));
+                personas.add(persona);
+            }
+            while(!rs.isLast());
+            
+            rs.close();
+            stmt.close();
+            this.mysql.desconectar();
+            
+            return personas;
+            
+        } catch (SQLException ex){
+            Logger.getLogger(PersonaDAOImpl.class.getName()).log(Level.SEVERE,null,ex);
+            return null;
+        }
     }
 
     @Override
     public Integer count() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try{
+            
+            Integer n = 0;
+            
+            this.mysql.conectar();
+            String query = "SELECT * FROM persona;";
+            System.out.println(query);
+            Statement stmt = this.mysql.getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = stmt.executeQuery(query);
+            do
+            {
+                rs.next();
+                n++;
+            }
+            while(!rs.isLast());
+            
+            rs.close();
+            stmt.close();
+            this.mysql.desconectar();
+            
+            return n;
+            
+        } catch (SQLException ex){
+            Logger.getLogger(PersonaDAOImpl.class.getName()).log(Level.SEVERE,null,ex);
+            return null;
+        }
     }
     
 }

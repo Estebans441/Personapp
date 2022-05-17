@@ -3,6 +3,7 @@ package co.edu.javeriana.personapp;
 import co.edu.javeriana.personapp.model.dao.PersonaDAO;
 import co.edu.javeriana.personapp.model.dao.impl.PersonaDAOImpl;
 import co.edu.javeriana.personapp.model.dto.PersonaDTO;
+import java.util.List;
 
 public class PantallaPersona extends javax.swing.JFrame {
 
@@ -14,7 +15,7 @@ public class PantallaPersona extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        grupoGenero = new javax.swing.ButtonGroup();
         jDialog1 = new javax.swing.JDialog();
         titulo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -43,6 +44,7 @@ public class PantallaPersona extends javax.swing.JFrame {
         botSalir2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         txtEmergente = new javax.swing.JLabel();
+        txtContar = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -75,6 +77,7 @@ public class PantallaPersona extends javax.swing.JFrame {
 
         jLabel5.setText("cc");
 
+        grupoGenero.add(radioM);
         radioM.setText("M");
         radioM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,6 +85,7 @@ public class PantallaPersona extends javax.swing.JFrame {
             }
         });
 
+        grupoGenero.add(radioF);
         radioF.setText("F");
         radioF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,6 +93,7 @@ public class PantallaPersona extends javax.swing.JFrame {
             }
         });
 
+        grupoGenero.add(radioO);
         radioO.setText("O");
         radioO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,6 +171,8 @@ public class PantallaPersona extends javax.swing.JFrame {
 
         jLabel6.setText("Personas:");
 
+        txtContar.setFont(new java.awt.Font("Unispace", 0, 12)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -202,7 +209,7 @@ public class PantallaPersona extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(radioO))
                                     .addComponent(cajaEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(botInsertar)
@@ -218,13 +225,17 @@ public class PantallaPersona extends javax.swing.JFrame {
                         .addComponent(botElim)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(268, 268, 268)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botIrTel, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 386, Short.MAX_VALUE)
+                                .addComponent(botSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtContar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botIrTel, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(24, 24, 24))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -291,7 +302,9 @@ public class PantallaPersona extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addComponent(botIrTel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botIrTel)
+                    .addComponent(txtContar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botSalir2)
                 .addContainerGap())
@@ -301,29 +314,50 @@ public class PantallaPersona extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botInsertarActionPerformed
-        PersonaDTO p1 = new PersonaDTO((long) Integer.parseInt(cajaCc.getText()), cajaNombre.getText(), cajaApellido.getText(), (short) Integer.parseInt(cajaEdad.getText()), 'M');
+        
+        //Def genero
+        char genero;
+        if(radioM.isSelected()) genero = 'M';
+        else if(radioF.isSelected()) genero = 'F';
+        else genero = 'O';
+        
+        //Crea persona
+        PersonaDTO p1 = new PersonaDTO((long) Integer.parseInt(cajaCc.getText()), cajaNombre.getText(), cajaApellido.getText(), (short) Integer.parseInt(cajaEdad.getText()), genero);
         System.out.println("p1: " + p1);
+        //Persona DAO
         PersonaDAO pdao = new PersonaDAOImpl();
         PersonaDTO p2 = pdao.create(p1);
-        System.out.println("p2: " + p2);
         
+        //Ventana emergente
         jDialog1.setVisible(true);
         jDialog1.setTitle("Insertar");
         jDialog1.setContentPane(txtEmergente);
-        txtEmergente.setText("Usuario agregado con exito!");
         jDialog1.setSize(500,200);
+        jDialog1.setLocationRelativeTo(null);
+        
+        if(p2 != null) txtEmergente.setText("Persona agregada con exito!");
+        else txtEmergente.setText("No se pudo agregar a la persona. Verifique que no dejo ningun campo en blanco");
+        
     }//GEN-LAST:event_botInsertarActionPerformed
 
     private void botBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botBuscarActionPerformed
-        // TODO add your handling code here:
+        PersonaDAO pdao = new PersonaDAOImpl();
+        PersonaDTO p = pdao.findById((long) Integer.parseInt(cajaCc.getText()));
+        System.out.println(p);
     }//GEN-LAST:event_botBuscarActionPerformed
 
     private void botRefresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botRefresActionPerformed
-        // TODO add your handling code here:
+        PersonaDAO pdao = new PersonaDAOImpl();
+        List<PersonaDTO> personas = pdao.findAll();
+        
+        for(PersonaDTO p : personas) System.out.println(p);
     }//GEN-LAST:event_botRefresActionPerformed
 
     private void botContActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botContActionPerformed
-        // TODO add your handling code here:
+        PersonaDAO pdao = new PersonaDAOImpl();
+        Integer cant = pdao.count();
+        
+        txtContar.setText("Cantidad de personas: " + cant);
     }//GEN-LAST:event_botContActionPerformed
 
     private void botModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botModActionPerformed
@@ -331,15 +365,19 @@ public class PantallaPersona extends javax.swing.JFrame {
     }//GEN-LAST:event_botModActionPerformed
 
     private void botElimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botElimActionPerformed
+        //Persona DAO para eliminar
         PersonaDAO pdao = new PersonaDAOImpl();
         Boolean eliminado = pdao.delete((long) Integer.parseInt(cajaCc.getText()));
         
+        //Ventana emergente
         jDialog1.setVisible(true);
         jDialog1.setTitle("Eliminar");
         jDialog1.setContentPane(txtEmergente);
+        jDialog1.setLocationRelativeTo(null);
+        jDialog1.setSize(500,200); 
+        
         if(eliminado) txtEmergente.setText("Persona Eliminada con exito!");
         else txtEmergente.setText("No se pudo eliminar a la persona. Verifique que la cedula esta bien ingresada o que la persona existe en el sistema");
-        jDialog1.setSize(500,200);        
     }//GEN-LAST:event_botElimActionPerformed
 
     private void botIrTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botIrTelActionPerformed
@@ -406,11 +444,11 @@ public class PantallaPersona extends javax.swing.JFrame {
     private javax.swing.JButton botMod;
     private javax.swing.JButton botRefres;
     private javax.swing.JButton botSalir2;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField cajaApellido;
     private javax.swing.JTextField cajaCc;
     private javax.swing.JTextField cajaEdad;
     private javax.swing.JTextField cajaNombre;
+    private javax.swing.ButtonGroup grupoGenero;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -426,6 +464,7 @@ public class PantallaPersona extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioM;
     private javax.swing.JRadioButton radioO;
     private javax.swing.JLabel titulo;
+    private javax.swing.JLabel txtContar;
     private javax.swing.JLabel txtEmergente;
     // End of variables declaration//GEN-END:variables
 }
