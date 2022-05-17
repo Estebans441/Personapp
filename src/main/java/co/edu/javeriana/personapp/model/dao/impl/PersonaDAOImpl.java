@@ -59,7 +59,31 @@ public class PersonaDAOImpl implements PersonaDAO {
 
     @Override
     public Boolean delete(Long cedula) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try{
+            String query = "DELETE FROM persona WHERE cedula = '" + cedula + "';";
+            System.out.println(query);
+            
+            PersonaDTO persona = findById(cedula);
+            System.out.println("Eliminando: " + persona);
+            
+            this.mysql.conectar();
+            Statement stmt = this.mysql.getConnection().createStatement();
+            int code = stmt.executeUpdate(query);
+            stmt.close();
+            this.mysql.desconectar();
+            
+            switch (code) {
+                case 1:
+                    System.out.println("Se elimino la persona");
+                    return true;
+                default:
+                    return false;
+            }
+            
+        } catch (SQLException ex){
+            Logger.getLogger(PersonaDAOImpl.class.getName()).log(Level.SEVERE,null,ex);
+            return null;
+        }
     }
 
     @Override

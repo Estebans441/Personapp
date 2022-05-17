@@ -41,6 +41,8 @@ public class PantallaPersona extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         botIrTel = new javax.swing.JButton();
         botSalir2 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtEmergente = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -162,6 +164,8 @@ public class PantallaPersona extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Personas:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -175,68 +179,78 @@ public class PantallaPersona extends javax.swing.JFrame {
                             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jSeparator3)))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(139, 139, 139)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(139, 139, 139)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cajaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel3))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cajaEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cajaCc, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cajaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(radioM)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(radioF)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(radioO))))))
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(cajaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(botInsertar)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3))
                                 .addGap(18, 18, 18)
-                                .addComponent(botBuscar)
-                                .addGap(18, 18, 18)
-                                .addComponent(botRefres)
-                                .addGap(18, 18, 18)
-                                .addComponent(botCont)
-                                .addGap(18, 18, 18)
-                                .addComponent(botMod)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(botElim)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cajaCc, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cajaApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(radioM)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(radioF)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(radioO))
+                                    .addComponent(cajaEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(botInsertar)
+                        .addGap(18, 18, 18)
+                        .addComponent(botBuscar)
+                        .addGap(18, 18, 18)
+                        .addComponent(botRefres)
+                        .addGap(18, 18, 18)
+                        .addComponent(botCont)
+                        .addGap(18, 18, 18)
+                        .addComponent(botMod)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botElim)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(268, 268, 268)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(botIrTel, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(botSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(358, 358, 358)
-                .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(24, 24, 24))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(226, 226, 226)
+                                .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(txtEmergente)
+                .addGap(48, 48, 48))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel6)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -256,7 +270,9 @@ public class PantallaPersona extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(cajaEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(8, 8, 8)
+                .addComponent(txtEmergente)
+                .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(radioM)
@@ -274,7 +290,7 @@ public class PantallaPersona extends javax.swing.JFrame {
                     .addComponent(botElim))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(botIrTel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botSalir2)
@@ -283,18 +299,6 @@ public class PantallaPersona extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void radioMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_radioMActionPerformed
-
-    private void radioFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_radioFActionPerformed
-
-    private void radioOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioOActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_radioOActionPerformed
 
     private void botInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botInsertarActionPerformed
         PersonaDTO p1 = new PersonaDTO((long) Integer.parseInt(cajaCc.getText()), cajaNombre.getText(), cajaApellido.getText(), (short) Integer.parseInt(cajaEdad.getText()), 'M');
@@ -305,7 +309,8 @@ public class PantallaPersona extends javax.swing.JFrame {
         
         jDialog1.setVisible(true);
         jDialog1.setTitle("Insertar");
-        //jDialog1.setContentPane(cajaNombre);
+        jDialog1.setContentPane(txtEmergente);
+        txtEmergente.setText("Usuario agregado con exito!");
         jDialog1.setSize(500,200);
     }//GEN-LAST:event_botInsertarActionPerformed
 
@@ -326,7 +331,15 @@ public class PantallaPersona extends javax.swing.JFrame {
     }//GEN-LAST:event_botModActionPerformed
 
     private void botElimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botElimActionPerformed
-        // TODO add your handling code here:
+        PersonaDAO pdao = new PersonaDAOImpl();
+        Boolean eliminado = pdao.delete((long) Integer.parseInt(cajaCc.getText()));
+        
+        jDialog1.setVisible(true);
+        jDialog1.setTitle("Eliminar");
+        jDialog1.setContentPane(txtEmergente);
+        if(eliminado) txtEmergente.setText("Persona Eliminada con exito!");
+        else txtEmergente.setText("No se pudo eliminar a la persona. Verifique que la cedula esta bien ingresada o que la persona existe en el sistema");
+        jDialog1.setSize(500,200);        
     }//GEN-LAST:event_botElimActionPerformed
 
     private void botIrTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botIrTelActionPerformed
@@ -338,6 +351,18 @@ public class PantallaPersona extends javax.swing.JFrame {
     private void botSalir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botSalir2ActionPerformed
         this.dispose();
     }//GEN-LAST:event_botSalir2ActionPerformed
+
+    private void radioOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioOActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioOActionPerformed
+
+    private void radioFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioFActionPerformed
+
+    private void radioMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioMActionPerformed
 
 
     public static void main(String args[]) {
@@ -392,6 +417,7 @@ public class PantallaPersona extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -400,5 +426,6 @@ public class PantallaPersona extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioM;
     private javax.swing.JRadioButton radioO;
     private javax.swing.JLabel titulo;
+    private javax.swing.JLabel txtEmergente;
     // End of variables declaration//GEN-END:variables
 }
