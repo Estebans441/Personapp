@@ -5,6 +5,7 @@ import co.edu.javeriana.personapp.model.dao.impl.PersonaDAOImpl;
 import co.edu.javeriana.personapp.model.dto.PersonaDTO;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class PantallaPersona extends javax.swing.JFrame {
 
@@ -32,6 +33,7 @@ public class PantallaPersona extends javax.swing.JFrame {
         radioF = new javax.swing.JRadioButton();
         radioO = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
+        tablaPersonas = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         botInsertar = new javax.swing.JButton();
@@ -101,6 +103,27 @@ public class PantallaPersona extends javax.swing.JFrame {
                 radioOActionPerformed(evt);
             }
         });
+
+        tablaPersonas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Cedula", "Nombre", "Apellido", "Edad", "Genero"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tablaPersonas);
 
         botInsertar.setBackground(new java.awt.Color(255, 255, 204));
         botInsertar.setText("Insertar");
@@ -337,6 +360,14 @@ public class PantallaPersona extends javax.swing.JFrame {
     private void botBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botBuscarActionPerformed
         PersonaDAO pdao = new PersonaDAOImpl();
         PersonaDTO p = pdao.findById((long) Integer.parseInt(cajaCc.getText()));
+        
+        DefaultTableModel model = (DefaultTableModel) tablaPersonas.getModel();
+        
+        int filas = tablaPersonas.getRowCount();
+        for (int i = 0;filas>i; i++) model.removeRow(0);
+            
+        model.addRow(new Object[]{p.getCedula(), p.getNombre(), p.getApellido(), p.getEdad(), p.getGenero()});
+        
         System.out.println(p);
     }//GEN-LAST:event_botBuscarActionPerformed
 
@@ -344,7 +375,12 @@ public class PantallaPersona extends javax.swing.JFrame {
         PersonaDAO pdao = new PersonaDAOImpl();
         List<PersonaDTO> personas = pdao.findAll();
         
-        for(PersonaDTO p : personas) System.out.println(p);
+        DefaultTableModel model = (DefaultTableModel) tablaPersonas.getModel();
+        
+        int filas = tablaPersonas.getRowCount();
+        for (int i = 0;filas>i; i++) model.removeRow(0);
+            
+        for(PersonaDTO p : personas) model.addRow(new Object[]{p.getCedula(), p.getNombre(), p.getApellido(), p.getEdad(), p.getGenero()});
     }//GEN-LAST:event_botRefresActionPerformed
 
     private void botContActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botContActionPerformed
@@ -452,6 +488,7 @@ public class PantallaPersona extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioF;
     private javax.swing.JRadioButton radioM;
     private javax.swing.JRadioButton radioO;
+    private javax.swing.JTable tablaPersonas;
     private javax.swing.JLabel titulo;
     private javax.swing.JLabel txtContar;
     private javax.swing.JLabel txtEmergente;
