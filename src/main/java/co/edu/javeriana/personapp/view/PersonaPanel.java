@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package co.edu.javeriana.personapp;
+package co.edu.javeriana.personapp.view;
 
 import co.edu.javeriana.personapp.model.dto.PersonaDTO;
 import java.util.List;
@@ -19,7 +19,7 @@ public class PersonaPanel extends javax.swing.JPanel {
      * Creates new form PersonaPanel
      */
     
-    private Principal principal;
+    private final Principal principal;
     
     public PersonaPanel(Principal principal) {
         initComponents();
