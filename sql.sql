@@ -25,6 +25,7 @@ CONSTRAINT telefono_persona_fk FOREIGN KEY(duenio) REFERENCES persona(cedula)
 );
 
 SELECT * FROM persona_22_db.persona;
+SELECT * FROM persona_22_db.telefono;
 
 UPDATE persona SET nombre = 'Pepe', apellido = 'Perez', edad = 11, genero = 'M' WHERE cedula = 5;
 

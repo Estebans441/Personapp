@@ -372,22 +372,14 @@ public class PersonaPanel extends javax.swing.JPanel {
         int filas = tablaPersonas.getRowCount();
         for (int i = 0;filas>i; i++) model.removeRow(0);
         
-        if(p == null) model.addRow(new Object[]{"La persona no existe"});
+        if(p == null) JOptionPane.showMessageDialog(null, "La persona no existe");
         else model.addRow(new Object[]{p.getCedula(), p.getNombre(), p.getApellido(), p.getEdad(), p.getGenero()});
 
         System.out.println(p);
     }//GEN-LAST:event_botBuscarActionPerformed
 
     private void botRefresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botRefresActionPerformed
-        
-        List<PersonaDTO> personas = this.principal.findAllPersonas();
-
-        DefaultTableModel model = (DefaultTableModel) tablaPersonas.getModel();
-
-        int filas = tablaPersonas.getRowCount();
-        for (int i = 0;filas>i; i++) model.removeRow(0);
-
-        for(PersonaDTO p : personas) model.addRow(new Object[]{p.getCedula(), p.getNombre(), p.getApellido(), p.getEdad(), p.getGenero()});
+        refrescar();
     }//GEN-LAST:event_botRefresActionPerformed
 
     private void botContActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botContActionPerformed
@@ -438,6 +430,17 @@ public class PersonaPanel extends javax.swing.JPanel {
         this.principal.salir();
     }//GEN-LAST:event_botSalir2ActionPerformed
 
+    protected void refrescar()
+    {
+        List<PersonaDTO> personas = this.principal.findAllPersonas();
+
+        DefaultTableModel model = (DefaultTableModel) tablaPersonas.getModel();
+
+        int filas = tablaPersonas.getRowCount();
+        for (int i = 0;filas>i; i++) model.removeRow(0);
+
+        if(personas != null) for(PersonaDTO p : personas) model.addRow(new Object[]{p.getCedula(), p.getNombre(), p.getApellido(), p.getEdad(), p.getGenero()});
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botBuscar;

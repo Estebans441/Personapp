@@ -104,6 +104,6 @@ public class PersonaDTO {
 
     @Override
     public String toString() {
-        return "PersonaDTO{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", edad=" + edad + ", genero=" + genero + '}';
+        return cedula + " - " + nombre + " " + apellido;
     }    
 }

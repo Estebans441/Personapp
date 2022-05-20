@@ -4,6 +4,13 @@
  */
 package co.edu.javeriana.personapp.view;
 
+import co.edu.javeriana.personapp.model.dto.PersonaDTO;
+import co.edu.javeriana.personapp.model.dto.TelefonoDTO;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author esteb
@@ -45,12 +52,13 @@ public class TelefonoPanel extends javax.swing.JPanel {
         botMod = new javax.swing.JButton();
         cajaOperador = new javax.swing.JTextField();
         botElim = new javax.swing.JButton();
-        cajaDuenio = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaTelefonos = new javax.swing.JTable();
         botIrPer = new javax.swing.JButton();
         botSalir2 = new javax.swing.JButton();
+        cmbDuenios = new javax.swing.JComboBox<>();
+        txtContar = new javax.swing.JLabel();
 
         jLabel6.setFont(new java.awt.Font("Stencil", 0, 12)); // NOI18N
         jLabel6.setText("Telefonos:");
@@ -122,7 +130,7 @@ public class TelefonoPanel extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Numero", "Operador", "Duenio"
+                "Numero", "Operador", "Dueño"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -155,6 +163,14 @@ public class TelefonoPanel extends javax.swing.JPanel {
             }
         });
 
+        cmbDuenios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbDueniosActionPerformed(evt);
+            }
+        });
+
+        txtContar.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -171,20 +187,21 @@ public class TelefonoPanel extends javax.swing.JPanel {
                             .addComponent(jLabel5)
                             .addComponent(jLabel1))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cajaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cajaDuenio, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cajaOperador, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cajaNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                            .addComponent(cajaOperador, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                            .addComponent(cmbDuenios, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtContar))
+                    .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -215,15 +232,13 @@ public class TelefonoPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addContainerGap()
+                .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtContar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -238,7 +253,7 @@ public class TelefonoPanel extends javax.swing.JPanel {
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(cajaDuenio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbDuenios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -260,27 +275,57 @@ public class TelefonoPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botInsertarActionPerformed
-
+        if(cajaNumero.getText().equals("")) JOptionPane.showMessageDialog(null, "El campo de numero nunca puede estar vacio");
+        String celDuenio = cmbDuenios.getSelectedItem().toString().split(" ")[0];
+        System.out.println(celDuenio);
+        Boolean creado = this.principal.crearTelefono(cajaNumero.getText(), cajaOperador.getText(), celDuenio);
+        
+        if(creado) JOptionPane.showMessageDialog(null, "Telefono registrado con exito!");
+        else JOptionPane.showMessageDialog(null, "No se pudo registrar el telefono. Verifique que no dejo ningun campo en blanco");
     }//GEN-LAST:event_botInsertarActionPerformed
 
     private void botBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botBuscarActionPerformed
-        // TODO add your handling code here:
+        
+        List<TelefonoDTO> telefonos = new ArrayList<>();
+        String celDuenio = cmbDuenios.getSelectedItem().toString().split(" ")[0];
+        if(cajaNumero.getText().equals("")) telefonos = this.principal.findByDuenioTelefonos(celDuenio);
+        else telefonos.add(this.principal.findByIdTelefonos(cajaNumero.getText()));
+
+        DefaultTableModel model = (DefaultTableModel) tablaTelefonos.getModel();
+
+        int filas = tablaTelefonos.getRowCount();
+        for (int i = 0;filas>i; i++) model.removeRow(0);
+        
+        if(telefonos == null) JOptionPane.showMessageDialog(null, "Esta persona no tiene telefonos registrados");
+        if(telefonos.get(0) == null) JOptionPane.showMessageDialog(null, "El telefono no esta registrado");
+        else for(TelefonoDTO t : telefonos) model.addRow(new Object[]{t.getNumero(), t.getOperador(), t.getDuenio()});
     }//GEN-LAST:event_botBuscarActionPerformed
 
     private void botRefresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botRefresActionPerformed
-        // TODO add your handling code here:
+        refrescar();
     }//GEN-LAST:event_botRefresActionPerformed
 
     private void botContActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botContActionPerformed
-        // TODO add your handling code here:
+        Integer cant = this.principal.contarTelefonos();
+        txtContar.setText(""+cant);
+        JOptionPane.showMessageDialog(null, "Cantidad de telefonos: " + cant);
     }//GEN-LAST:event_botContActionPerformed
 
     private void botModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botModActionPerformed
-        // TODO add your handling code here:
+        if(cajaNumero.getText().equals("")) JOptionPane.showMessageDialog(null, "El campo de numero nunca puede estar vacio");
+        String celDuenio = cmbDuenios.getSelectedItem().toString().split(" ")[0];
+        Boolean editado = this.principal.editarTelefono(cajaNumero.getText(), cajaOperador.getText(), celDuenio);
+        
+        if(editado) JOptionPane.showMessageDialog(null, "Telefono editado con exito!");
+        else JOptionPane.showMessageDialog(null, "No se pudo editar el telefono. Verifique que el numero este registrado");
     }//GEN-LAST:event_botModActionPerformed
 
     private void botElimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botElimActionPerformed
-        // TODO add your handling code here:
+        Boolean eliminado = this.principal.eliminarTelefono(cajaNumero.getText());
+
+        //Ventana emergente
+        if(eliminado) JOptionPane.showMessageDialog(null, "Telefono Eliminado con exito!");
+        else JOptionPane.showMessageDialog(null, "No se pudo eliminar el telefono. Verifique que el numero este bien ingresado o que el telefono existe en el sistema");
     }//GEN-LAST:event_botElimActionPerformed
 
     private void botIrPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botIrPerActionPerformed
@@ -291,6 +336,26 @@ public class TelefonoPanel extends javax.swing.JPanel {
         this.principal.salir();
     }//GEN-LAST:event_botSalir2ActionPerformed
 
+    private void cmbDueniosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDueniosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbDueniosActionPerformed
+
+    protected void agregarDuenios(List<PersonaDTO> duenios)
+    {
+        for(PersonaDTO p : duenios) cmbDuenios.addItem(p.toString());
+    }
+    
+    protected void refrescar()
+    {
+        List<TelefonoDTO> telefonos = this.principal.findAllTelefonos();
+
+        DefaultTableModel model = (DefaultTableModel) tablaTelefonos.getModel();
+
+        int filas = tablaTelefonos.getRowCount();
+        for (int i = 0;filas>i; i++) model.removeRow(0);
+
+        if(telefonos != null) for(TelefonoDTO t : telefonos) model.addRow(new Object[]{t.getNumero(), t.getOperador(), t.getDuenio()});
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botBuscar;
@@ -301,9 +366,9 @@ public class TelefonoPanel extends javax.swing.JPanel {
     private javax.swing.JButton botMod;
     private javax.swing.JButton botRefres;
     private javax.swing.JButton botSalir2;
-    private javax.swing.JTextField cajaDuenio;
     private javax.swing.JTextField cajaNumero;
     private javax.swing.JTextField cajaOperador;
+    private javax.swing.JComboBox<String> cmbDuenios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
@@ -314,5 +379,6 @@ public class TelefonoPanel extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTable tablaTelefonos;
     private javax.swing.JLabel titulo;
+    private javax.swing.JLabel txtContar;
     // End of variables declaration//GEN-END:variables
 }

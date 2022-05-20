@@ -5,7 +5,9 @@
 package co.edu.javeriana.personapp.view;
 
 import co.edu.javeriana.personapp.controller.PersonaBO;
+import co.edu.javeriana.personapp.controller.TelefonoBO;
 import co.edu.javeriana.personapp.model.dto.PersonaDTO;
+import co.edu.javeriana.personapp.model.dto.TelefonoDTO;
 import java.util.List;
 
 /**
@@ -21,6 +23,7 @@ public class Principal extends javax.swing.JFrame {
     private PersonaPanel panelPersona;
     private TelefonoPanel panelTelefono;
     private PersonaBO perBO;
+    private TelefonoBO telBO;
     
     public Principal() {
         this.setTitle("Personapp");
@@ -93,7 +96,7 @@ public class Principal extends javax.swing.JFrame {
         //this.removeAll();
         this.panelPersona = new PersonaPanel(this);
         this.panelPersona.setVisible(true);
-        
+        this.panelPersona.refrescar();
         this.add(panelPersona);
         this.setLocationRelativeTo(null);
         this.pack();
@@ -104,7 +107,7 @@ public class Principal extends javax.swing.JFrame {
        
         this.panelPersona = new PersonaPanel(this);
         this.panelPersona.setVisible(true);
-        
+        this.panelPersona.refrescar();
         this.add(panelPersona);
         this.setLocationRelativeTo(null);
         this.pack();
@@ -112,10 +115,11 @@ public class Principal extends javax.swing.JFrame {
     
     protected void irPersonaTelefono() {
         this.remove(panelPersona);
-       
+        this.perBO = new PersonaBO();
         this.panelTelefono = new TelefonoPanel(this);
         this.panelTelefono.setVisible(true);
-        
+        this.panelTelefono.agregarDuenios(this.perBO.findAll());
+        this.panelTelefono.refrescar();
         this.add(panelTelefono);
         this.setLocationRelativeTo(null);
         this.pack();
@@ -128,6 +132,12 @@ public class Principal extends javax.swing.JFrame {
     Boolean crearPersona(PersonaDTO p1) {
         this.perBO = new PersonaBO();
         return this.perBO.crear(p1);
+    }
+    
+    Boolean editarPersona(Long l, PersonaDTO p1) {
+        this.perBO = new PersonaBO();
+        PersonaDTO p = this.perBO.editar(l, p1);
+        return p != null;
     }
 
     Boolean eliminarPersona(long l) {
@@ -149,13 +159,48 @@ public class Principal extends javax.swing.JFrame {
         this.perBO = new PersonaBO();
         return this.perBO.contar();
     }
-
-    Boolean editarPersona(Long l, PersonaDTO p1) {
+    
+    Boolean crearTelefono(String numero, String operador, String celDuenio) {
+        this.telBO = new TelefonoBO();
         this.perBO = new PersonaBO();
-        PersonaDTO p = this.perBO.editar(l, p1);
-        return p != null;
+        PersonaDTO d = this.perBO.findById((long) Integer.parseInt(celDuenio));
+        TelefonoDTO t1 = new TelefonoDTO(numero, operador, d);
+        return this.telBO.crear(t1);
     }
     
+    Boolean editarTelefono(String numero, String operador, String celDuenio) {
+        this.telBO = new TelefonoBO();
+        this.perBO = new PersonaBO();
+        PersonaDTO d = this.perBO.findById((long) Integer.parseInt(celDuenio));
+        TelefonoDTO t1 = new TelefonoDTO(numero, operador, d);
+        TelefonoDTO t = this.telBO.editar(numero, t1);
+        return t != null;
+    }
+
+    Boolean eliminarTelefono(String n) {
+        this.telBO = new TelefonoBO();
+        return this.telBO.eliminar(n);
+    }
+
+    TelefonoDTO findByIdTelefonos(String n) {
+        this.telBO = new TelefonoBO();
+        return this.telBO.findById(n);
+    }
+    
+    List<TelefonoDTO> findByDuenioTelefonos(String c) {
+        this.telBO = new TelefonoBO();
+        return this.telBO.findByDuenio((long) Integer.parseInt(c));
+    }
+
+    List<TelefonoDTO> findAllTelefonos() {
+        this.telBO = new TelefonoBO();
+        return this.telBO.findAll();
+    }
+
+    Integer contarTelefonos() {
+        this.telBO = new TelefonoBO();
+        return this.telBO.contar();
+    }   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
