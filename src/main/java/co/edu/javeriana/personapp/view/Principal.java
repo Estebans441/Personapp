@@ -98,8 +98,8 @@ public class Principal extends javax.swing.JFrame {
         this.panelPersona.setVisible(true);
         this.panelPersona.refrescar();
         this.add(panelPersona);
-        this.setLocationRelativeTo(null);
         this.pack();
+        this.setLocationRelativeTo(null);
     }
     
     protected void irTelefonoPersona() {
