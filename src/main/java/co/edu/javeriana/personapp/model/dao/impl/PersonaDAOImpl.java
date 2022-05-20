@@ -55,7 +55,33 @@ public class PersonaDAOImpl implements PersonaDAO {
 
     @Override
     public PersonaDTO edit(Long cedula, PersonaDTO persona) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try{
+            this.mysql.conectar();
+            String query = "UPDATE persona SET "+ 
+                    "nombre = '" + persona.getNombre() + "'," +
+                    "apellido = '" + persona.getApellido() + "'," +
+                    "edad = '" + persona.getEdad() + "'," +
+                    "genero = '" + persona.getGenero() + "'" +
+                    " WHERE cedula = '" + cedula + "';";
+            System.out.println(query);
+            
+            Statement stmt = this.mysql.getConnection().createStatement();
+            int code = stmt.executeUpdate(query);
+            stmt.close();
+            this.mysql.desconectar();
+            
+            switch (code) {
+                case 1:
+                    System.out.println("Se edito la persona");
+                    return findById(persona.getCedula());
+                default:
+                    return null;
+            }
+            
+        } catch (SQLException ex){
+            Logger.getLogger(PersonaDAOImpl.class.getName()).log(Level.SEVERE,null,ex);
+            return null;
+        }
     }
 
     @Override

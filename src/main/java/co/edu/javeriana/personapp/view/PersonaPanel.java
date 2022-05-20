@@ -35,6 +35,7 @@ public class PersonaPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        grupoGenero = new javax.swing.ButtonGroup();
         cajaApellido = new javax.swing.JTextField();
         cajaCc = new javax.swing.JTextField();
         cajaEdad = new javax.swing.JTextField();
@@ -64,6 +65,7 @@ public class PersonaPanel extends javax.swing.JPanel {
         cajaNombre = new javax.swing.JTextField();
         txtContar = new javax.swing.JLabel();
 
+        grupoGenero.add(radioM);
         radioM.setText("M");
         radioM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,6 +73,7 @@ public class PersonaPanel extends javax.swing.JPanel {
             }
         });
 
+        grupoGenero.add(radioF);
         radioF.setText("F");
         radioF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,6 +81,7 @@ public class PersonaPanel extends javax.swing.JPanel {
             }
         });
 
+        grupoGenero.add(radioO);
         radioO.setText("O");
         radioO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,16 +203,16 @@ public class PersonaPanel extends javax.swing.JPanel {
 
         jLabel5.setText("cc");
 
-        txtContar.setFont(new java.awt.Font("Stencil", 0, 18)); // NOI18N
+        txtContar.setFont(new java.awt.Font("Tw Cen MT Condensed", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addGap(124, 124, 124)
                 .addComponent(txtContar)
-                .addContainerGap(472, Short.MAX_VALUE))
+                .addContainerGap(420, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -256,7 +260,6 @@ public class PersonaPanel extends javax.swing.JPanel {
                             .addGap(31, 31, 31)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(botSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(botIrTel, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -273,15 +276,15 @@ public class PersonaPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(562, Short.MAX_VALUE)
-                .addComponent(txtContar)
-                .addGap(44, 44, 44))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(txtContar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(562, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                     .addComponent(jLabel6)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -321,7 +324,7 @@ public class PersonaPanel extends javax.swing.JPanel {
                         .addComponent(botElim))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                     .addComponent(botIrTel)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(botSalir2)
@@ -342,6 +345,7 @@ public class PersonaPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_radioOActionPerformed
 
     private void botInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botInsertarActionPerformed
+        if(cajaCc.getText().equals("")) JOptionPane.showMessageDialog(null, "El campo de cedula nunca puede estar vacio");
         //Def genero
         char genero;
         if(radioM.isSelected()) genero = 'M';
@@ -360,15 +364,16 @@ public class PersonaPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_botInsertarActionPerformed
 
     private void botBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botBuscarActionPerformed
-        
+        if(cajaCc.getText().equals("")) JOptionPane.showMessageDialog(null, "El campo de cedula nunca puede estar vacio");
         PersonaDTO p = this.principal.findByIdPersonas((long) Integer.parseInt(cajaCc.getText()));
 
         DefaultTableModel model = (DefaultTableModel) tablaPersonas.getModel();
 
         int filas = tablaPersonas.getRowCount();
         for (int i = 0;filas>i; i++) model.removeRow(0);
-
-        model.addRow(new Object[]{p.getCedula(), p.getNombre(), p.getApellido(), p.getEdad(), p.getGenero()});
+        
+        if(p == null) model.addRow(new Object[]{"La persona no existe"});
+        else model.addRow(new Object[]{p.getCedula(), p.getNombre(), p.getApellido(), p.getEdad(), p.getGenero()});
 
         System.out.println(p);
     }//GEN-LAST:event_botBuscarActionPerformed
@@ -387,12 +392,33 @@ public class PersonaPanel extends javax.swing.JPanel {
 
     private void botContActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botContActionPerformed
         Integer cant = this.principal.contarPersonas();
-        txtContar.setText("Cantidad de personas: " + cant);
+        txtContar.setText(""+cant);
         JOptionPane.showMessageDialog(null, "Cantidad de personas: " + cant);
     }//GEN-LAST:event_botContActionPerformed
 
     private void botModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botModActionPerformed
-        // TODO add your handling code here:
+        
+        if(cajaCc.getText().equals("")) JOptionPane.showMessageDialog(null, "El campo de cedula nunca puede estar vacio");
+        //Def genero
+        char genero;
+        if(radioM.isSelected()) genero = 'M';
+        else if(radioF.isSelected()) genero = 'F';
+        else if(radioO.isSelected()) genero = 'O';
+        else genero = ' ';
+        
+        Short edad;
+        if(cajaEdad.getText().equals("")) edad = null;
+        else edad = (short) Integer.parseInt(cajaEdad.getText());
+
+        //Crea persona
+        PersonaDTO p1 = new PersonaDTO((long) Integer.parseInt(cajaCc.getText()), cajaNombre.getText(), cajaApellido.getText(), edad, genero);
+        System.out.println("p1: " + p1);
+        //Persona DAO
+        Boolean editado = this.principal.editarPersona((long) Integer.parseInt(cajaCc.getText()), p1);
+        
+        //Ventana emergente
+        if(editado) JOptionPane.showMessageDialog(null, "Persona editada con exito!");
+        else JOptionPane.showMessageDialog(null, "No se pudo editar a la persona. Verifique que la cedula de la persona exista");
     }//GEN-LAST:event_botModActionPerformed
 
     private void botElimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botElimActionPerformed
@@ -426,6 +452,7 @@ public class PersonaPanel extends javax.swing.JPanel {
     private javax.swing.JTextField cajaCc;
     private javax.swing.JTextField cajaEdad;
     private javax.swing.JTextField cajaNombre;
+    private javax.swing.ButtonGroup grupoGenero;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

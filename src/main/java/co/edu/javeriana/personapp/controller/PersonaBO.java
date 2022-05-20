@@ -16,10 +16,20 @@ public class PersonaBO {
         else return false;
     }
     
-    /*public Boolean editar(PersonaDTO persona)
+    public PersonaDTO editar(Long cedula, PersonaDTO persona)
     {
-        
-    }*/
+        this.pdao = new PersonaDAOImpl();
+        PersonaDTO p = this.pdao.findById(cedula);
+        if(p == null) return null;
+        else
+        {
+            if(persona.getNombre().equals("")) persona.setNombre(p.getNombre());
+            if(persona.getApellido().equals("")) persona.setApellido(p.getApellido());
+            if(persona.getEdad() == null) persona.setEdad(p.getEdad());
+            if(persona.getGenero() == ' ') persona.setGenero(p.getGenero());
+            return this.pdao.edit(cedula, persona);
+        }
+    }
     
     public Boolean eliminar(Long cedula)
     {

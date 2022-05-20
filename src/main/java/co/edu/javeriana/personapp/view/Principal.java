@@ -149,6 +149,12 @@ public class Principal extends javax.swing.JFrame {
         this.perBO = new PersonaBO();
         return this.perBO.contar();
     }
+
+    Boolean editarPersona(Long l, PersonaDTO p1) {
+        this.perBO = new PersonaBO();
+        PersonaDTO p = this.perBO.editar(l, p1);
+        return p != null;
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
